@@ -1,6 +1,8 @@
 import mongoose, { Schema, model } from "mongoose";
 import { Manufacturer } from "../Manufacturer/manufacturer";
 import { Supplier } from "../Supplier/supplier";
+import { Raw_Material } from "../Supplier/raw_material"; // Ensure the correct model name
+import { Warehouse } from "../Supplier/Supplier_warehouse"; // Ensure the correct model name
 
 const schema = new Schema(
   {
@@ -13,17 +15,17 @@ const schema = new Schema(
       ref: "Manufacturer", // Reference to the Manufacturer model
       required: true, // Ensure manufacturer_id is always provided
     },
-    raw_material_supplier_id: {
+    supplier_id: {
       type: Schema.Types.ObjectId,
-      ref: "Supplier", // Reference to the RawMaterialSupplier model
-      required: true, // Ensure raw_material_supplier_id is always provided
+      ref: "Supplier", // Reference to the Supplier model
+      required: true, // Ensure supplier_id is always provided
     },
     products: [
       {
-        product_id: {
+        raw_material: {
           type: Schema.Types.ObjectId,
-          ref: "product", // Reference to the Product model
-          required: true, // Ensure product_id is always provided
+          ref: "Raw_Material", // Reference to the Raw_Material model
+          required: true, // Ensure raw_material is always provided
         },
         quantity: {
           type: Number,
@@ -34,6 +36,7 @@ const schema = new Schema(
           type: Number,
           required: true, // Ensure price_per_unit is always provided
           min: 0, // Ensure price is non-negative
+          // This should come from the Raw_Material schema
         },
       },
     ],
@@ -50,7 +53,13 @@ const schema = new Schema(
       enum: ["pending", "shipped", "delivered"], // Order status options
       default: "pending", // Default status
     },
-    raw_material_supplier_gst_number: {
+    supplier_gst_number: {
+      type: String,
+      required: true,
+      trim: true,
+      match: [/^[0-9A-Z]{15}$/, "Please enter a valid GST number"], // GST number validation
+    },
+    manufacturer_gst_number: {
       type: String,
       required: true,
       trim: true,
@@ -60,9 +69,14 @@ const schema = new Schema(
       type: String,
       required: true, // Ensure manufacturer's location is always provided
     },
-    raw_material_supplier_location: {
+    supplier_location: {
       type: String,
-      required: true, // Ensure raw material supplier's location is always provided
+      required: true, // Ensure supplier's location is always provided
+    },
+    total_amount: {
+      type: Number,
+      required: true,
+      min: 0, // Total amount must be non-negative
     },
   },
   {

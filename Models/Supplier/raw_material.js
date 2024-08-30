@@ -22,11 +22,6 @@ const schema = new Schema(
       required: true,
       enum: ["Chemical", "Pharmaceutical", "Biological", "Other"], // Enum for predefined material types
     },
-    quantity_in_stock: {
-      type: Number,
-      required: true,
-      min: 0, // Ensures quantity cannot be negative
-    },
     unit_price: {
       type: Number,
       required: true,
