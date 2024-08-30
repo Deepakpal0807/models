@@ -6,6 +6,19 @@ const schema = new Schema(
       type: Schema.Types.ObjectId,
       auto: true, // Automatically generates a unique ID
     },
+    gst_number: {
+      type: String,
+      required: true,
+      unique: true, // Ensure GST numbers are unique
+      trim: true, // Remove whitespace from both ends of the string
+      match: [/^[0-9A-Z]{15}$/, "Please enter a valid GST number"], // GST number validation (15 alphanumeric characters)
+    },
+    License_no:{
+         type:"String",
+         required:true,
+         unique:true
+         
+    },
     first_name: {
       type: String,
       required: true,
@@ -24,13 +37,6 @@ const schema = new Schema(
       lowercase: true, // Convert email to lowercase
       match: [/^\S+@\S+\.\S+$/, "Please use a valid email address"], // Email validation
     },
-    gst_number: {
-      type: String,
-      required: true,
-      unique: true, // Ensure GST numbers are unique
-      trim: true, // Remove whitespace from both ends of the string
-      match: [/^[0-9A-Z]{15}$/, "Please enter a valid GST number"], // GST number validation (15 alphanumeric characters)
-    },
     primary_phone_no: {
       type: String,
       required: true,
@@ -40,12 +46,6 @@ const schema = new Schema(
       type: String,
       match: [/^\d{10}$/, "Please enter a valid 10-digit phone number"], // Optional secondary phone number with validation
     },
-    warehouses: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "warehouse", // Reference to the Warehouse model
-      },
-    ],
   },
   {
     timestamps: true, // Automatically adds createdAt and updatedAt timestamps

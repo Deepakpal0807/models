@@ -1,31 +1,27 @@
 import mongoose, { Schema, model } from "mongoose";
-import { Manufacturer } from "./manufacturer";
-import { Product } from "./product";
+import { Wholesaler } from "./wholesale_distributer";
+import { Batch } from "../Manufacturer/batch";
 const schema = new Schema(
   {
+    owner_id:{
+        type: Schema.Types.ObjectId,
+        ref: 'Wholesaler'
+
+    },
     batch_id: {
       type: Schema.Types.ObjectId,
-      auto: true, // Automatically generates a unique ID
+      auto: 'Batch', // Automatically generates a unique ID
     },
-    product_id: {
-      type: Schema.Types.ObjectId,
-      ref: "Product",
-      },
-      drug_name:{
-         
+     drug_name:{
         type:String,
         required:true,
       },
-      
-    manufacturer_id: {
-      type: Schema.Types.ObjectId,
-      ref: "Manufacturer", // Reference to the Manufacturer model
-      required: true, // Ensure each batch has an associated manufacturer
-    },
+    
     status: {
       type: String,
       enum: ["Active", "Expired", "Pending"], // Example status values
       required: true, // Ensure the status is always provided
+    
     },
     quantity_produced: {
       type: Number,

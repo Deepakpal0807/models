@@ -1,10 +1,17 @@
 import mongoose, { Schema, model } from "mongoose";
+import { Manufacturer } from "./manufacturer";
+import { Batch } from "./batch"; // Import the Batch model
 
 const schema = new Schema(
   {
     warehouse_id: {
       type: Schema.Types.ObjectId,
       auto: true, // Automatically generates a unique ID
+    },
+    owner_id: {
+      type: Schema.Types.ObjectId,
+      ref: 'Manufacturer',
+      required: true, // Ensure owner_id is always provided
     },
     location: {
       type: String,
@@ -38,10 +45,13 @@ const schema = new Schema(
         match: [/^\d{10}$/, "Please enter a valid 10-digit phone number"], // Phone number validation
       },
     },
-    products_stored: [
+    batches_stored: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "batch", // Reference to the Product model
+        batch_id: {
+          type: Schema.Types.ObjectId,
+          ref: "Batch", // Reference to the Batch model
+        },
+        
       },
     ],
   },

@@ -1,5 +1,5 @@
 import mongoose, { Schema, model } from "mongoose";
-import {Supplier} from "../Supplier/supplier";
+import {Warehouse} from "../Supplier/Supplier_warehouse";
 
 const schema = new Schema(
   {
@@ -7,10 +7,10 @@ const schema = new Schema(
       type: Schema.Types.ObjectId,
       auto: true, // Automatically generates a unique ID
     },
-    supplier_id: {
+    warehouse: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: "Supplier", // Reference to the Supplier model
+      ref: "Warehouse", // Reference to the Supplier model
     },
     material_name: {
       type: String,
