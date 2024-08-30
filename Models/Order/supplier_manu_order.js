@@ -1,4 +1,6 @@
 import mongoose, { Schema, model } from "mongoose";
+import { Manufacturer } from "../Manufacturer/manufacturer";
+import { Supplier } from "../Supplier/supplier";
 
 const schema = new Schema(
   {
@@ -8,12 +10,12 @@ const schema = new Schema(
     },
     manufacturer_id: {
       type: Schema.Types.ObjectId,
-      ref: "manufacturer", // Reference to the Manufacturer model
+      ref: "Manufacturer", // Reference to the Manufacturer model
       required: true, // Ensure manufacturer_id is always provided
     },
     raw_material_supplier_id: {
       type: Schema.Types.ObjectId,
-      ref: "supplier", // Reference to the RawMaterialSupplier model
+      ref: "Supplier", // Reference to the RawMaterialSupplier model
       required: true, // Ensure raw_material_supplier_id is always provided
     },
     products: [

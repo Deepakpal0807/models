@@ -51,18 +51,6 @@ const schema = new Schema(
         match: [/^\d{10}$/, "Please enter a valid 10-digit phone number"], // Optional secondary phone number with validation
       },
     },
-    product_types: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Product", // Reference to the Product model
-      },
-    ],
-    warehouses: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Warehouse", // Reference to the Warehouse model
-      },
-    ],
   },
   {
     timestamps: true, // Automatically adds createdAt and updatedAt timestamps

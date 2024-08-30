@@ -1,5 +1,6 @@
 import mongoose, { Schema, model } from "mongoose";
 
+
 const schema = new Schema(
   {
     supplier_id: {
@@ -40,12 +41,6 @@ const schema = new Schema(
       trim: true, // Remove whitespace from both ends of the string
       match: [/^[0-9A-Z]{15}$/, "Please enter a valid GST number"], // GST number validation (15 alphanumeric characters)
     },
-    material_types: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "raw_material", // Reference to the Raw_Material model
-      },
-    ],
   },
   {
     timestamps: true, // Automatically adds createdAt and updatedAt timestamps

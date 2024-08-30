@@ -1,4 +1,5 @@
 import mongoose, { Schema, model } from "mongoose";
+import {Supplier} from "../Supplier/supplier";
 
 const schema = new Schema(
   {
@@ -9,7 +10,7 @@ const schema = new Schema(
     supplier_id: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: "supplier", // Reference to the Supplier model
+      ref: "Supplier", // Reference to the Supplier model
     },
     material_name: {
       type: String,
