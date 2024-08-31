@@ -1,7 +1,7 @@
 import mongoose, { Schema, model } from "mongoose";
-import { Manufacturer } from "../Manufacturer/manufacturer";
+import { Pharmacy } from "../Pharmacy/Pharmacy";
 import { Dealer } from "../Wholesaler/wholesale_distributer";
-import { Batch } from "../Manufacturer/batch";
+import { Product } from "../Manufacturer/product";
 
 const orderSchema = new Schema({
   order_id: {
@@ -13,16 +13,16 @@ const orderSchema = new Schema({
     ref: "Dealer", // Reference to the Hospital model
     required: true,
   },
-manufacturerr_id: {
+pharmacy_id: {
     type: Schema.Types.ObjectId,
-    ref: "Manufacturer", // Reference to the Wholesaler model
+    ref: "Pharmacy", // Reference to the Wholesaler model
     required: true,
   },
   products: [
     {
-      batch: {
+      product: {
         type: Schema.Types.ObjectId,
-        ref: "Batch", // Reference to the Product model
+        ref: "Product", // Reference to the Product model
         required: true,
       },
       quantity: {
@@ -51,18 +51,6 @@ manufacturerr_id: {
     enum: ["pending", "shipped", "delivered", "canceled"], // Possible statuses for an order
     default: "pending",
   },
-  dealer_gst_number: {
-    type: String,
-    required: true,
-    trim: true,
-    match: [/^[0-9A-Z]{15}$/, "Please enter a valid GST number"], // GST number validation
-  },
-  manufacturer_gst_number: {
-    type: String,
-    required: true,
-    trim: true,
-    match: [/^[0-9A-Z]{15}$/, "Please enter a valid GST number"], // GST number validation
-  },
   manufacturer_location: {
     type: String,
     required: true, // Ensure manufacturer's location is always provided
@@ -80,4 +68,4 @@ manufacturerr_id: {
   timestamps: true, // Automatically adds createdAt and updatedAt timestamps
 });
 
-export const ManufacturerDealer = model("ManufacturerDealer", orderSchema);
+export const DealerPharma = model("DealerPharma", orderSchema);

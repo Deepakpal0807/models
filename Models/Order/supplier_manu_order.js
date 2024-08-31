@@ -84,4 +84,4 @@ const schema = new Schema(
   }
 );
 
-export const Order = model("Order", schema);
+export const SupplierManufacturer = model("SupplierManufacturer", schema);
