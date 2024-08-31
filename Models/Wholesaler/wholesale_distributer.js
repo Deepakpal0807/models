@@ -6,6 +6,7 @@ const schema = new Schema(
       type: Schema.Types.ObjectId,
       auto: true, // Automatically generates a unique ID
     },
+    
     gst_number: {
       type: String,
       required: true,
