@@ -20,6 +20,9 @@ const PharmaPatientOrderSchema = new mongoose.Schema({
     phone:{
         type:String,
         required:true
+    },
+    precreption_id:{
+      type:String,
     }
   },
   items: [

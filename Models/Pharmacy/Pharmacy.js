@@ -22,10 +22,7 @@ const PharmacySchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  customer: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Patient'
-  }]
+  
 });
 
 const Pharmacy = mongoose.model('Pharmacy', PharmacySchema);
