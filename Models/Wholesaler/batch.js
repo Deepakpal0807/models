@@ -6,7 +6,7 @@ const schema = new Schema(
     owner_id:{
         type: Schema.Types.ObjectId,
         ref: 'Wholesaler'
-
+  
     },
     batch_id: {
       type: Schema.Types.ObjectId,
@@ -23,7 +23,7 @@ const schema = new Schema(
       required: true, // Ensure the status is always provided
     
     },
-    quantity_produced: {
+    quantity_ordered: {
       type: Number,
       required: true,
       min: 0, // Ensure quantity is non-negative

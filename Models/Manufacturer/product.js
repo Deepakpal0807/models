@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from "mongoose"
+import mongoose, { Schema, model } from "mongoose";
 import { Batch } from "./batch";
 
 const schema = new Schema(
@@ -36,11 +36,21 @@ const schema = new Schema(
       trim: true, // Remove whitespace from both ends of the string
       maxlength: 500, // Limit the description length to 500 characters
     },
-    price:{
-      type:Number,
-      required:true,
-      min:1
-    }
+    price: {
+      type: Number,
+      required: true,
+      min: 1
+    },
+    strips: [{
+      quantity: {
+        type: Number,
+        required: true // Ensure the quantity for each strip is provided
+      },
+      pricePerStrip: {
+        type: Number,
+        required: true // Ensure the price for each strip is provided
+      }
+    }]
   },
   {
     timestamps: true, // Automatically adds createdAt and updatedAt timestamps
