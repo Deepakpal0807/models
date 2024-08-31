@@ -13,7 +13,7 @@ const orderSchema = new Schema({
     ref: "Dealer", // Reference to the Hospital model
     required: true,
   },
-manufacturer_id: {
+hospital_id: {
     type: Schema.Types.ObjectId,
     ref: "Manufacturer", // Reference to the Wholesaler model
     required: true,
@@ -51,18 +51,6 @@ manufacturer_id: {
     enum: ["pending", "shipped", "delivered", "canceled"], // Possible statuses for an order
     default: "pending",
   },
-  dealer_gst_number: {
-    type: String,
-    required: true,
-    trim: true,
-    match: [/^[0-9A-Z]{15}$/, "Please enter a valid GST number"], // GST number validation
-  },
-  manufacturer_gst_number: {
-    type: String,
-    required: true,
-    trim: true,
-    match: [/^[0-9A-Z]{15}$/, "Please enter a valid GST number"], // GST number validation
-  },
   manufacturer_location: {
     type: String,
     required: true, // Ensure manufacturer's location is always provided
@@ -80,4 +68,4 @@ manufacturer_id: {
   timestamps: true, // Automatically adds createdAt and updatedAt timestamps
 });
 
-export const ManufacturerDealer = model("ManufacturerDealer", orderSchema);
+export const Order = model("Order", orderSchema);
