@@ -68,4 +68,4 @@ hospital_id: {
   timestamps: true, // Automatically adds createdAt and updatedAt timestamps
 });
 
-export const Order = model("Order", orderSchema);
+export const DealerHospital = model("DealerHospital", orderSchema);
